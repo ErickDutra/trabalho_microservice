@@ -11,8 +11,8 @@ public class ProdutoClientConfig {
     @Bean
     public ProdutoClient produtoClient() {
         return Feign.builder()
-            .decoder(new JacksonDecoder())
-            .encoder(new JacksonEncoder())
+   //         .decoder(new JacksonDecoder())
+  //          .encoder(new JacksonEncoder())
             .logger(new Slf4jLogger(ProdutoClient.class))
             .logLevel(Logger.Level.FULL)
             .target(ProdutoClient.class, "http://localhost:8081");

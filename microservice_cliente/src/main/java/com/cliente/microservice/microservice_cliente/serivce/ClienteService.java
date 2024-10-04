@@ -13,16 +13,20 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    private ProdutoSErvicoe produtoservice;
-    
-
     public ClienteDto salvarCliente(ClienteDto clienteDto) {
         Cliente cliente = new Cliente();
         cliente.setNome(clienteDto.nome());
         cliente.setCpf(clienteDto.cpf());
         cliente.setEmail(clienteDto.email());
         Cliente clienteSalvo = clienteRepository.save(cliente);
-        produtoSErvice.create(produto);
+        return new ClienteDto(clienteSalvo.getId(), clienteSalvo.getNome(), clienteSalvo.getCpf(), clienteSalvo.getEmail());
+    }
+    public ClienteDto editarCliente(ClienteDto clienteDto) {
+        Cliente cliente = clienteRepository.findById(clienteDto.id()).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        cliente.setNome(clienteDto.nome());
+        cliente.setCpf(clienteDto.cpf());
+        cliente.setEmail(clienteDto.email());
+        Cliente clienteSalvo = clienteRepository.save(cliente);
         return new ClienteDto(clienteSalvo.getId(), clienteSalvo.getNome(), clienteSalvo.getCpf(), clienteSalvo.getEmail());
     }
 

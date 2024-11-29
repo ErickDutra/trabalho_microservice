@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cliente.microservice.microservice_cliente.table.Cliente;
 
+
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-
+    public Cliente getByCpf(String cpf);
 }
